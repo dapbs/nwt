@@ -20,7 +20,13 @@ from nwt.utils import encode_params
 
 from nwt.error import build_api_error
 
-from nwt.models import new_api_object, APIObject, Campaigns
+from nwt.models import (
+    new_api_object, 
+    APIObject, 
+    Campaigns, 
+    CurrentUser, 
+    User
+)
 
 
 class PercolateClient(object):
@@ -48,7 +54,7 @@ class PercolateClient(object):
             {
                 "Authorization": "Bearer " + self.api_key,
                 "Accept": "application/json",
-                "Content-Type": "application/json",
+                "Content-Type": "application/json; charset=utf-8",
                 "User-Agent": "nwt/python",
             }
         )
@@ -56,7 +62,9 @@ class PercolateClient(object):
 
     def _create_api_uri(self, *parts):
         """Internal helper for creating fully qualified endpoint URIs."""
-        return urljoin(self.BASE_API_URI, "/".join(imap(quote, parts)))
+        return urljoin(
+            self.BASE_API_URI, self.API_VERSION, "/".join(imap(quote, parts))
+        )
 
     def _request(self, method, *relative_path_parts, **kwargs):
         """Internal helper for creating HTTP requests to the Percolate API.
@@ -145,6 +153,11 @@ class PercolateClient(object):
             obj.data = new_api_object(self, data, model_type)
         return obj
 
+
+    def get_current_user(self):
+        response = self._get("me")
+        return self._make_api_object(response, CurrentUser)
+
     def list_campaings(self, license_ids, **params):
-        response = self._get(self.API_VERSION, "campaigns", params=params)
+        response = self._get("campaigns", license_ids, params=params)
         return self._make_api_object(response, Campaigns)

@@ -20,8 +20,8 @@ from nwt import PercolateClient
 
 client = PercolateClient("USER_TOKEN")
 
-client.list_campaings(liscense_ids) # can be one or more (comma sperated)
-client.get_all_data(as_dataframe=True)
+client.get_current_user()
+
 
 ```
 

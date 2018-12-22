@@ -103,6 +103,20 @@ class Campaigns(APIObject):
         self.update(data)
         return data
 
+class User(APIObject):
+    pass
+
+
+class CurrentUser(User):
+    def get(self):
+        """https://percolate.com/docs/api/#/method.api.v5.me"""
+        data = self.api_client.get_current_user()
+        self.update(data)
+        return data
+    def get_user_scope_ids(self):
+        raise NotImplementedError
+
+
 _resource_to_model = {
     "campaigns": Campaigns
 }
