@@ -8,7 +8,7 @@ from __future__ import unicode_literals
 
 
 class PercolateError(Exception):
-    raise NotImplementedError
+    pass
 
 
 class APIError(PercolateError):
