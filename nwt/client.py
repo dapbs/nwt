@@ -158,6 +158,6 @@ class PercolateClient(object):
         response = self._get("me")
         return self._make_api_object(response, CurrentUser)
 
-    def list_campaings(self, license_ids, **params):
-        response = self._get("campaigns", license_ids, params=params)
+    def list_campaings(self, scope_ids, **params):
+        response = self._get("campaigns", scope_ids, params=params)
         return self._make_api_object(response, Campaigns)

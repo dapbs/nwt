@@ -98,8 +98,8 @@ class APIObject(dict):
 
 
 class Campaigns(APIObject):
-    def list_all_campaigns(self, license_ids, **params):
-        data = self.api_client.list_campaigns(self.id, license_ids, **params)
+    def list_all_campaigns(self, scope_ids, **params):
+        data = self.api_client.list_campaigns(self.id, scope_ids, **params)
         self.update(data)
         return data
 
