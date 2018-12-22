@@ -118,7 +118,8 @@ class CurrentUser(User):
 
 
 _resource_to_model = {
-    "campaigns": Campaigns
+    "campaigns": Campaigns,
+    "user": CurrentUser
 }
 
 
