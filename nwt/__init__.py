@@ -1,4 +1,4 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from .api import PercolateClient
+from .client import PercolateClient
