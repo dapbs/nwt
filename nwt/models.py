@@ -103,6 +103,7 @@ class Campaigns(APIObject):
         self.update(data)
         return data
 
+
 class User(APIObject):
     pass
 
@@ -113,14 +114,12 @@ class CurrentUser(User):
         data = self.api_client.get_current_user()
         self.update(data)
         return data
+
     def get_user_scope_ids(self):
         raise NotImplementedError
 
 
-_resource_to_model = {
-    "campaigns": Campaigns,
-    "user": CurrentUser
-}
+_resource_to_model = {"campaigns": Campaigns, "user": CurrentUser}
 
 
 def new_api_object(client, obj, cls=None, **kwargs):
