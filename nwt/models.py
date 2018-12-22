@@ -119,7 +119,10 @@ class CurrentUser(User):
         raise NotImplementedError
 
 
-_resource_to_model = {"campaigns": Campaigns, "user": CurrentUser}
+_resource_to_model = {
+    "campaigns": Campaigns, 
+    "user": CurrentUser
+}
 
 
 def new_api_object(client, obj, cls=None, **kwargs):

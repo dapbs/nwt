@@ -26,22 +26,40 @@ class APIError(PercolateError):
         return "APIError(id=%s): %s" % (self.id, self.message)
 
 
+class InvalidTokenError(APIError):
+    pass
+
+
 class NotFoundError(APIError):
     pass
 
 
-class InvalidRequestError(APIError):
+class ResourceConflictError(APIError):
+    pass
+
+
+class RateLimitError(APIError):
+    pass
+
+
+class InternalServerError(APIError):
     pass
 
 
 _error_id_to_class = {
-    "invalid_request": InvalidRequestError,
+    "invalid_token": InvalidTokenError,
     "not_found": NotFoundError,
+    "resource_conflict": ResourceConflictError,
+    "rate_limit": RateLimitError,
+    "server_error": ResourceConflictError,
 }
 
 _status_code_to_class = {
-    400: InvalidRequestError, 
-    404: NotFoundError
+    401: InvalidTokenError,
+    403: NotFoundError,
+    409: ResourceConflictError,
+    429: ResourceConflictError,
+    500: InternalServerError,
 }
 
 
