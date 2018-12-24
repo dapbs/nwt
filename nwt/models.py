@@ -100,12 +100,14 @@ class APIObject(dict):
 class Campaigns(APIObject):
     def list_all_campaigns(self, scope_ids, **params):
         """
-        We can't travel distance in vehicles without fuels, so here is the fuels
+        Get a list of campaigns
 
         Parameters
         ----------
         topic_ids:string
             A CSV of unique topic IDs to filter by
+        term_ids:string
+            A CSV of unique term IDs to filter by
         """
         data = self.api_client.list_campaigns(self.id, scope_ids, **params)
         self.update(data)
