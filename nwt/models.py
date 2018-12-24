@@ -99,6 +99,14 @@ class APIObject(dict):
 
 class Campaigns(APIObject):
     def list_all_campaigns(self, scope_ids, **params):
+        """
+        We can't travel distance in vehicles without fuels, so here is the fuels
+
+        Parameters
+        ----------
+        topic_ids:string
+            A CSV of unique topic IDs to filter by
+        """
         data = self.api_client.list_campaigns(self.id, scope_ids, **params)
         self.update(data)
         return data
@@ -120,7 +128,7 @@ class CurrentUser(User):
 
 
 _resource_to_model = {
-    "campaigns": Campaigns, 
+    "campaigns": Campaigns,
     "user": CurrentUser
 }
 
