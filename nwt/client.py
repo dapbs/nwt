@@ -21,10 +21,10 @@ from nwt.utils import encode_params
 from nwt.error import build_api_error
 
 from nwt.models import (
-    new_api_object, 
-    APIObject, 
-    Campaigns, 
-    CurrentUser, 
+    new_api_object,
+    APIObject,
+    Campaigns,
+    CurrentUser,
     User
 )
 
@@ -62,9 +62,10 @@ class PercolateClient(object):
 
     def _create_api_uri(self, *parts):
         """Internal helper for creating fully qualified endpoint URIs."""
-        return urljoin(
-            self.BASE_API_URI, self.API_VERSION, "/".join(imap(quote, parts))
-        )
+        #return urljoin(
+        #    self.BASE_API_URI, self.API_VERSION, "/".join(imap(quote, parts))
+        #)
+        return self.BASE_API_URI+self.API_VERSION+"/campaign/?scope_ids="+parts[1] 
 
     def _request(self, method, *relative_path_parts, **kwargs):
         """Internal helper for creating HTTP requests to the Percolate API.
